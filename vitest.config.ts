@@ -7,6 +7,7 @@ export default defineConfig({
     setupFiles: ['./tests/vitest.setup.ts'],
     env: {
       DATABASE_URL: process.env.DATABASE_URL || 'postgresql://afit:afitpass@localhost:5433/leadcrm_test?schema=public',
+      NEXTAUTH_SECRET: 'test-secret',
     },
   },
   resolve: {

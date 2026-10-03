@@ -432,17 +432,21 @@ npx prisma studio    # GUI for data browsing
 
 ```bash
 # .env.local
-DATABASE_URL="postgresql://afit:afitpass@localhost:5433/leadcrm?schema=public"
-NEXTAUTH_SECRET="dev-only-replace-in-production-with-32-char-random-string-WXYZ1234567890"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
+NEXTAUTH_SECRET="REPLACE-WITH-RANDOM-32-CHAR-STRING"
 NEXTAUTH_URL="http://localhost:3000"
 
 # .env (loaded for all environments)
-DATABASE_URL="postgresql://afit:afitpass@localhost:5433/leadcrm?schema=public"
-NEXTAUTH_SECRET="dev-only-replace-in-production-with-32-char-random-string-WXYZ1234567890"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public"
+NEXTAUTH_SECRET="REPLACE-WITH-RANDOM-32-CHAR-STRING"
 NEXTAUTH_URL="http://localhost:3000"
 
 # .env.test
-DATABASE_URL="postgresql://afit:afitpass@localhost:5433/leadcrm_test?schema=public"
+
+# .env.test
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE_TEST?schema=public"
+NEXTAUTH_SECRET="test-secret-key-for-ci"
+NEXTAUTH_URL="http://localhost:3000"
 ```
 
 ---
