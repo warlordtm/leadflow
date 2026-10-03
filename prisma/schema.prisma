@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(cuid())
+  email        String     @unique
+  name         String?
+  passwordHash String
+  role         Role       @default(STAFF)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  accounts     Account[]
+  activities   Activity[]
+  followUps    FollowUp[]
+  leads        Lead[]     @relation("OwnerLeads")
+  sessions     Session[]
+}
+
+model Lead {
+  id          String     @id @default(cuid())
+  name        String
+  email       String?
+  phone       String?
+  company     String?
+  source      LeadSource @default(OTHER)
+  status      LeadStatus @default(NEW)
+  notes       String?
+  ownerUserId String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  activities  Activity[]
+  followUps   FollowUp[]
+  owner       User       @relation("OwnerLeads", fields: [ownerUserId], references: [id], onDelete: Cascade)
+
+  @@index([ownerUserId])
+  @@index([status])
+}
+
+model FollowUp {
+  id          String         @id @default(cuid())
+  leadId      String
+  userId      String
+  scheduledAt DateTime
+  type        FollowUpType
+  notes       String?
+  status      FollowUpStatus @default(PENDING)
+  completedAt DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  lead        Lead           @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([userId])
+  @@index([scheduledAt])
+  @@index([status])
+}
+
+model Activity {
+  id        String       @id @default(cuid())
+  leadId    String
+  userId    String
+  type      ActivityType
+  metadata  Json?
+  createdAt DateTime     @default(now())
+  lead      Lead         @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([createdAt])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum Role {
+  ADMIN
+  STAFF
+}
+
+enum LeadSource {
+  WHATSAPP
+  INSTAGRAM
+  FACEBOOK
+  WEBSITE
+  REFERRAL
+  PHONE
+  OTHER
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  PROPOSAL
+  WON
+  LOST
+}
+
+enum FollowUpType {
+  CALL
+  MESSAGE
+  EMAIL
+  MEETING
+  OTHER
+}
+
+enum FollowUpStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+enum ActivityType {
+  LEAD_CREATED
+  LEAD_UPDATED
+  STATUS_CHANGED
+  FOLLOWUP_CREATED
+  FOLLOWUP_COMPLETED
+  LEAD_ASSIGNED
+}

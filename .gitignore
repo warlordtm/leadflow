@@ -1,0 +1,16 @@
+node_modules
+# Next.js build output
+.next
+# Env files — DO NOT commit local secrets
+.env
+.env.local
+.env.test
+.env.production
+.env*.local
+.env*.test
+prisma/*.db
+prisma/*.db-journal
+.test-results/
+playwright-report/
+coverage/
+tsconfig.tsbuildinfo

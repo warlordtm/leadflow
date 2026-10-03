@@ -1,0 +1,5 @@
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- For test database only.
