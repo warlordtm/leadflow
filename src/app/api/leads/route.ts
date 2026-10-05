@@ -4,6 +4,7 @@ import { createLeadSchema, leadFilterSchema } from '@/lib/validations/lead'
 import prisma from '@/lib/prisma'
 import { z } from 'zod'
 import { createActivity } from '@/lib/activity'
+import { logger } from '@/lib/logger'
 
 export async function GET(req: Request) {
   const user = await getCurrentUser()
@@ -57,7 +58,7 @@ export async function GET(req: Request) {
 
     return NextResponse.json(leads)
   } catch (error) {
-    console.error('Error fetching leads:', error)
+    logger.error('Error fetching leads:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to fetch leads' },
       { status: 500 }
@@ -99,7 +100,7 @@ export async function POST(req: Request) {
         { status: 400 }
       )
     }
-    console.error('Error creating lead:', error)
+    logger.error('Error creating lead:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to create lead' },
       { status: 500 }

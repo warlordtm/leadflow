@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { getCurrentUser } from '@/lib/authz'
 import prisma from '@/lib/prisma'
 import { LeadStatus, FollowUpStatus } from '@prisma/client'
+import { logger } from '@/lib/logger'
 
 export async function GET(req: Request) {
   const user = await getCurrentUser()
@@ -15,7 +16,6 @@ export async function GET(req: Request) {
     const todayEnd = new Date(now.setHours(24, 0, 0, 0))
 
     // Lead counts by status (for admin: all leads; for staff: their own)
-    const where: any = {}
     // For admin role, see all leads; for staff, only owned
     // In solo mode, user is admin and owns all leads
     // In team mode, admin sees all, staff sees only assigned leads
@@ -108,7 +108,7 @@ export async function GET(req: Request) {
       recentLeads,
     })
   } catch (error) {
-    console.error('Error fetching dashboard:', error)
+    logger.error('Error fetching dashboard:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to fetch dashboard data' },
       { status: 500 }

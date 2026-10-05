@@ -7,7 +7,6 @@ class Logger {
 
   private formatMessage(level: LogLevel, message: string, context?: LogContext): string {
     const timestamp = new Date().toISOString()
-    const contextStr = context ? JSON.stringify(context) : ''
     return JSON.stringify({
       timestamp,
       level,

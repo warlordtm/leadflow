@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma'
 import { z } from 'zod'
 import { createActivity } from '@/lib/activity'
 import { Role, FollowUpStatus } from '@prisma/client'
+import { logger } from '@/lib/logger'
 
 export async function GET(
   req: Request,
@@ -39,7 +40,7 @@ export async function GET(
 
     return NextResponse.json(followUp)
   } catch (error) {
-    console.error('Error fetching follow-up:', error)
+    logger.error('Error fetching follow-up:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to fetch follow-up' },
       { status: 500 }
@@ -105,7 +106,7 @@ export async function PATCH(
         { status: 400 }
       )
     }
-    console.error('Error updating follow-up:', error)
+    logger.error('Error updating follow-up:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to update follow-up' },
       { status: 500 }
@@ -142,7 +143,7 @@ export async function DELETE(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Error deleting follow-up:', error)
+    logger.error('Error deleting follow-up:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to delete follow-up' },
       { status: 500 }

@@ -4,6 +4,7 @@ import { createFollowUpSchema, followUpFilterSchema } from '@/lib/validations/fo
 import prisma from '@/lib/prisma'
 import { z } from 'zod'
 import { createActivity } from '@/lib/activity'
+import { logger } from '@/lib/logger'
 import { Role } from '@prisma/client'
 
 export async function GET(req: Request) {
@@ -76,7 +77,7 @@ export async function GET(req: Request) {
         { status: 400 }
       )
     }
-    console.error('Error fetching follow-ups:', error)
+    logger.error('Error fetching follow-ups:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to fetch follow-ups' },
       { status: 500 }
@@ -130,7 +131,7 @@ export async function POST(req: Request) {
         { status: 400 }
       )
     }
-    console.error('Error creating follow-up:', error)
+    logger.error('Error creating follow-up:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to create follow-up' },
       { status: 500 }

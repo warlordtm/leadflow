@@ -31,7 +31,6 @@ export class RateLimiter {
     const ttl = this.cache.ttl
     const now = Date.now()
     const windowStart = now - ttl
-    const count = this.getCount(key)
 
     const entries = Array.from(this.cache.keys()).filter((k: string) => {
       const entries = k.split(':')

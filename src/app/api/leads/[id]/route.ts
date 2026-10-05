@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma'
 import { z } from 'zod'
 import { createActivity } from '@/lib/activity'
 import { Role } from '@prisma/client'
+import { logger } from '@/lib/logger'
 
 export async function GET(
   req: Request,
@@ -45,7 +46,7 @@ export async function GET(
 
     return NextResponse.json(lead)
   } catch (error) {
-    console.error('Error fetching lead:', error)
+    logger.error('Error fetching lead:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to fetch lead' },
       { status: 500 }
@@ -116,7 +117,7 @@ export async function PATCH(
         { status: 400 }
       )
     }
-    console.error('Error updating lead:', error)
+    logger.error('Error updating lead:', { error: String(error) })
     return NextResponse.json(
       { error: 'Failed to update lead' },
       { status: 500 }

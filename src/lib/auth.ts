@@ -14,6 +14,20 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
   },
+  cookies: {
+    sessionToken: {
+      name: process.env.NODE_ENV === 'production'
+        ? '__Secure-next-auth.session-token'
+        : 'next-auth.session-token',
+      options: {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 30 * 24 * 60 * 60,
+      },
+    },
+  },
   pages: {
     signIn: '/login',
     error: '/login',
@@ -39,7 +53,10 @@ export const authOptions: NextAuthOptions = {
           user.passwordHash
         )
 
-        if (!isValid) return null
+        if (!isValid) {
+          logger.warn('Failed login attempt', { email: credentials.email })
+          return null
+        }
 
         return {
           id: user.id,
