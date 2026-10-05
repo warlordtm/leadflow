@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config'
+import { resolve } from 'path'
 
 export default defineConfig({
   test: {
@@ -12,7 +13,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': '/home/godwinbamisaye/Desktop/developer/projects/LeadandclientfollowupCRM/src',
+      '@': resolve(__dirname, 'src'),
     },
   },
 })
