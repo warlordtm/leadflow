@@ -6,6 +6,7 @@ import prisma from '@/lib/prisma'
 import type { NextAuthOptions } from 'next-auth'
 import { getServerSession } from 'next-auth'
 import { logger } from '@/lib/logger'
+import { authRateLimiter, getClientIP } from '@/lib/rate-limit'
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -41,6 +42,13 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null
+
+        const clientIP = getClientIP({ headers: new Headers() } as any)
+        const rateLimitResult = authRateLimiter.consume(`login:${clientIP}`)
+        if (!rateLimitResult.success) {
+          logger.warn('Rate limit exceeded for login attempt', { email: credentials.email, clientIP })
+          return null
+        }
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
