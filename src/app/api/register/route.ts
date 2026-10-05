@@ -66,7 +66,7 @@ export async function POST(req: Request) {
     }
     logger.error('Registration error:', { error: String(error) })
     return NextResponse.json(
-      { error: 'Something went wrong' },
+      { error: 'Something went wrong', details: String(error) },
       { status: 500 }
     )
   }
