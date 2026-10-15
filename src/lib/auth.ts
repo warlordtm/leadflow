@@ -8,7 +8,7 @@ import { getServerSession } from 'next-auth'
 import { logger } from '@/lib/logger'
 import { authRateLimiter, getClientIP } from '@/lib/rate-limit'
 
-if (process.env.VERCEL_URL) {
+if (process.env.VERCEL_URL && !process.env.NEXTAUTH_URL) {
   process.env.NEXTAUTH_URL = `https://${process.env.VERCEL_URL}`
 }
 
