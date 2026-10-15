@@ -123,6 +123,7 @@
 }
 
 @layer components {
+  /* Base button styles */
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-md border border-transparent px-4 py-2 text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary transition-all duration-150 ease-spring;
     background-color: var(--color-primary);
@@ -180,6 +181,7 @@
     font-size: 1rem;
   }
 
+  /* Card */
   .card {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border-subtle);
@@ -192,9 +194,12 @@
     box-shadow: var(--shadow-md);
   }
 
+  /* Form inputs */
   .input {
-    @apply w-full rounded-md border bg-white px-3.5 py-2 text-sm text-gray-900 outline-none transition-all duration-150 ease-spring;
+    @apply w-full rounded-md border px-3.5 py-2 text-sm outline-none transition-all duration-150 ease-spring;
+    background-color: var(--color-surface);
     border-color: var(--color-border);
+    color: var(--color-text-primary);
   }
 
   .input:focus {
@@ -211,7 +216,8 @@
   }
 
   .label {
-    @apply block text-sm font-medium text-gray-700 mb-1.5;
+    @apply block text-sm font-medium mb-1.5;
+    color: var(--color-text-secondary);
   }
 
   .badge {
@@ -292,6 +298,24 @@
     transition: opacity 250ms var(--ease-emphasized), transform 250ms var(--ease-emphasized);
   }
 }
+
+/* Dark mode overrides for hardcoded Tailwind classes used throughout the app */
+.dark .bg-white,
+.dark .bg-gray-50,
+.dark .bg-gray-100 { background-color: var(--color-surface); }
+.dark .bg-gray-50\/50,
+.dark .bg-error\/5 { background-color: color-mix(in srgb, var(--color-error) 5%, transparent); }
+.dark .text-gray-900 { color: var(--color-text-primary); }
+.dark .text-gray-600 { color: var(--color-text-secondary); }
+.dark .text-gray-500 { color: var(--color-text-secondary); }
+.dark .border-border-subtle,
+.dark .border-gray-200 { border-color: var(--color-border); }
+.dark .border-red-200 { border-color: color-mix(in srgb, var(--color-error) 30%, transparent); }
+.dark .hover\:bg-gray-50:hover { background-color: color-mix(in srgb, var(--color-text-primary) 3%, transparent); }
+.dark .hover\:shadow-md:hover { box-shadow: var(--shadow-lg); }
+.dark .focus-visible\:ring-primary:focus-visible { box-shadow: 0 0 0 2px var(--color-primary); }
+.dark .from-primary\/10 { background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent); }
+.dark .to-transparent { background-image: linear-gradient(to top, transparent, transparent); }
 
 @layer utilities {
   .text-balance {
