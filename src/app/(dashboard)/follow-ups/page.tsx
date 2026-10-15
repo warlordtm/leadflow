@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { logger } from '@/lib/logger'
 import NavBar from '@/components/nav-bar'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -26,7 +27,7 @@ export default function FollowUpsPage() {
       const data = await res.json()
       setFollowUps(data)
     } catch (e) {
-      console.error('Error fetching follow-ups:', e)
+      logger.error('Error fetching follow-ups:', { error: String(e) })
     } finally {
       setLoading(false)
     }

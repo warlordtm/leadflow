@@ -8,6 +8,10 @@ import { getServerSession } from 'next-auth'
 import { logger } from '@/lib/logger'
 import { authRateLimiter, getClientIP } from '@/lib/rate-limit'
 
+if (process.env.VERCEL && process.env.VERCEL_URL) {
+  process.env.NEXTAUTH_URL = `https://${process.env.VERCEL_URL}`
+}
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
