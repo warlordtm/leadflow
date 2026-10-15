@@ -93,10 +93,6 @@ export const authOptions: NextAuthOptions = {
   },
 }
 
-// NextAuth returns a request handler function for App Router
-const handler = NextAuth(authOptions)
-export { handler as GET, handler as POST }
-
 // Server-side session helper for server components and API routes
 export async function auth() {
   return getServerSession(authOptions)
