@@ -31,6 +31,7 @@ export const createLeadSchema = z.object({
 
 export const updateLeadSchema = createLeadSchema.partial().extend({
   id: z.string().min(1),
+  ownerUserId: z.string().uuid().optional(),
 })
 
 export const leadFilterSchema = z.object({

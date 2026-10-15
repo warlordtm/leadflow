@@ -89,6 +89,12 @@ export async function PATCH(
     if (data.company !== undefined) updates.company = data.company || null
     if (data.source !== undefined) updates.source = data.source
     if (data.notes !== undefined) updates.notes = data.notes || null
+    if (data.ownerUserId !== undefined) {
+      if (user.role !== Role.ADMIN) {
+        return NextResponse.json({ error: 'Unauthorized to reassign' }, { status: 403 })
+      }
+      updates.ownerUserId = data.ownerUserId
+    }
 
     const wasStatusChange =
       data.status !== undefined && data.status !== existing.status

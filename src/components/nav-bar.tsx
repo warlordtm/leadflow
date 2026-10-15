@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import LogoutButton from '@/components/logout-button'
+import { useSession } from 'next-auth/react'
 
 const links = [
   { href: '/dashboard', label: 'Dashboard' },
@@ -14,6 +15,8 @@ const links = [
 
 export default function NavBar() {
   const pathname = usePathname()
+  const { data: session } = useSession()
+  const isAdmin = (session?.user as { role: string } | undefined)?.role === 'ADMIN'
 
   return (
     <nav className="mb-8 border-b border-border-subtle bg-white/80 backdrop-blur-sm">
@@ -40,6 +43,22 @@ export default function NavBar() {
                 </Link>
               )
             })}
+            {isAdmin && (
+              <Link
+                href="/admin"
+                className={cn(
+                  'relative text-sm font-medium transition-all duration-200',
+                  pathname === '/admin'
+                    ? 'text-primary'
+                    : 'text-gray-600 hover:text-gray-900'
+                )}
+              >
+                Admin
+                {pathname === '/admin' && (
+                  <span className="absolute -bottom-2 left-0 right-0 h-0.5 w-full rounded-full bg-primary" />
+                )}
+              </Link>
+            )}
           </div>
           <LogoutButton />
         </div>
