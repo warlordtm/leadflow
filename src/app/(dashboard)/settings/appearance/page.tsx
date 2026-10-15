@@ -24,11 +24,22 @@ const applyTheme = (theme: Settings['theme']) => {
     root.classList.add('light')
     root.classList.remove('dark')
   } else {
-    // system preference
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     root.classList.toggle('dark', isDark)
     root.classList.toggle('light', !isDark)
   }
+}
+
+const applyDensity = (density: Settings['density']) => {
+  if (typeof document === 'undefined') return
+  const root = document.documentElement
+  root.classList.remove('density-compact', 'density-comfortable', 'density-spacious')
+  root.classList.add(`density-${density}`)
+}
+
+const applyLanguage = (language: string) => {
+  if (typeof document === 'undefined') return
+  document.documentElement.lang = language
 }
 
 export default function AppearanceSettingsPage() {
@@ -54,6 +65,8 @@ export default function AppearanceSettingsPage() {
     if (typeof window !== 'undefined') {
       localStorage.setItem('appearance-settings', JSON.stringify(settings))
       applyTheme(settings.theme)
+      applyDensity(settings.density)
+      applyLanguage(settings.language)
     }
     setSaved(true)
     logger.info('Appearance settings saved', { settings: JSON.stringify(settings) })
@@ -69,6 +82,13 @@ export default function AppearanceSettingsPage() {
 
   const handleSettingChange = (key: keyof Settings, value: string) => {
     setSettings(s => ({ ...s, [key]: value }))
+    if (key === 'density') {
+      applyDensity(value as Settings['density'])
+    }
+    if (key === 'language') {
+      applyLanguage(value)
+    }
+    localStorage.setItem('appearance-settings', JSON.stringify({ ...settings, [key]: value }))
   }
 
   return (

@@ -109,6 +109,25 @@
     scroll-behavior: smooth;
   }
 
+  /* Density settings */
+  .density-compact {
+    --spacing-base: 0.5rem;
+    --card-padding: 1rem;
+    --section-padding: 1.5rem;
+  }
+
+  .density-comfortable {
+    --spacing-base: 0.75rem;
+    --card-padding: 1.5rem;
+    --section-padding: 2rem;
+  }
+
+  .density-spacious {
+    --spacing-base: 1rem;
+    --card-padding: 2rem;
+    --section-spacing: 2.5rem;
+  }
+
   body {
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
