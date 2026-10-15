@@ -15,3 +15,5 @@ playwright-report/
 coverage/
 tsconfig.tsbuildinfo
 .neon
+.vercel
+.env
