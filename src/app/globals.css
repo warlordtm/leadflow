@@ -325,8 +325,11 @@
 .dark .bg-gray-50\/50,
 .dark .bg-error\/5 { background-color: color-mix(in srgb, var(--color-error) 5%, transparent); }
 .dark .text-gray-900 { color: var(--color-text-primary); }
+.dark .text-gray-800 { color: var(--color-text-primary); }
+.dark .text-gray-700 { color: var(--color-text-primary); }
 .dark .text-gray-600 { color: var(--color-text-secondary); }
 .dark .text-gray-500 { color: var(--color-text-secondary); }
+.dark .text-gray-400 { color: var(--color-text-tertiary); }
 .dark .border-border-subtle,
 .dark .border-gray-200 { border-color: var(--color-border); }
 .dark .border-red-200 { border-color: color-mix(in srgb, var(--color-error) 30%, transparent); }
@@ -335,6 +338,8 @@
 .dark .focus-visible\:ring-primary:focus-visible { box-shadow: 0 0 0 2px var(--color-primary); }
 .dark .from-primary\/10 { background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent); }
 .dark .to-transparent { background-image: linear-gradient(to top, transparent, transparent); }
+.dark .bg-gray-200 { background-color: var(--color-border); }
+.dark .bg-primary\/10 { background-color: color-mix(in srgb, var(--color-primary) 10%, transparent); }
 
 @layer utilities {
   .text-balance {

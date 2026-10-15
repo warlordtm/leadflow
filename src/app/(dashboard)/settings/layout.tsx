@@ -17,51 +17,6 @@ const settingsLinks = [
 export default function SettingsLayout({ children }: { children?: ReactNode }) {
   const pathname = usePathname()
   const { data: session } = useSession()
-  const [activeTab, setActiveTab] = useState('profile')
-
-  useEffect(() => {
-    const path = pathname.split('/').pop()
-    if (path && settingsLinks.some(l => l.href.endsWith(path))) {
-      setActiveTab(path)
-    }
-  }, [pathname])
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('appearance-settings')
-      if (stored) {
-        const settings = JSON.parse(stored)
-        if (settings.theme && typeof document !== 'undefined') {
-          const root = document.documentElement
-          if (settings.theme === 'dark') {
-            root.classList.add('dark')
-            root.classList.remove('light')
-          } else if (settings.theme === 'light') {
-            root.classList.add('light')
-            root.classList.remove('dark')
-          } else {
-            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-            root.classList.toggle('dark', isDark)
-            root.classList.toggle('light', !isDark)
-          }
-        }
-        if (settings.density && typeof document !== 'undefined') {
-          const root = document.documentElement
-          root.classList.remove('density-compact', 'density-comfortable', 'density-spacious')
-          root.classList.add(`density-${settings.density}`)
-        }
-        if (settings.language) {
-          document.documentElement.lang = settings.language
-        }
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!session?.user) {
-      // Redirect handled by middleware
-    }
-  }, [session])
 
   return (
     <div className="min-h-screen bg-background pb-12">
