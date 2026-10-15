@@ -8,6 +8,10 @@ import { getServerSession } from 'next-auth'
 import { logger } from '@/lib/logger'
 import { authRateLimiter, getClientIP } from '@/lib/rate-limit'
 
+if (process.env.VERCEL_URL) {
+  process.env.NEXTAUTH_URL = `https://${process.env.VERCEL_URL}`
+}
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
@@ -92,6 +96,10 @@ export const authOptions: NextAuthOptions = {
     },
   },
 }
+
+// NextAuth returns a request handler function for App Router
+const handler = NextAuth(authOptions)
+export { handler as GET, handler as POST }
 
 // Server-side session helper for server components and API routes
 export async function auth() {
