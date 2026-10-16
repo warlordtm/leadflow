@@ -21,7 +21,7 @@ export default function NavBar() {
   const isAdmin = (session?.user as { role: string } | undefined)?.role === 'ADMIN'
 
   return (
-    <nav className="mb-8 border-b border-border-subtle bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+    <nav className="mb-8 border-b border-border-subtle bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm sticky top-0 z-50">
       <div className="mx-auto max-w-6xl">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-8">
