@@ -147,7 +147,7 @@ function stepScreenshot(index: number) {
 const stats = [
   { value: '10x', label: 'More follow-ups completed' },
   { value: '99%', label: 'Uptime guarantee' },
-  { value: '0', label: 'Lost leads (in theory)' },
+  { value: '500+', label: 'leads followed up' },
 ]
 
 export default async function LandingPage() {
