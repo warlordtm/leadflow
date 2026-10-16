@@ -324,6 +324,36 @@
     cursor: pointer;
   }
 
+  /* Scroll-triggered animations for how-it-works steps */
+  .step-card {
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .step-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  .step-number::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
   /* Dark mode overrides for hardcoded Tailwind classes used throughout the app */
   .dark .bg-white,
 .dark .bg-gray-50,

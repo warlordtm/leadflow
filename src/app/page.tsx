@@ -37,10 +37,27 @@ const features = [
   },
 ]
 
+const steps = [
+  {
+    title: 'Capture Leads',
+    description: 'Add leads manually or import them from any source. Track contact details, status, and source in one place.',
+    screenshotLabel: 'Lead Capture',
+  },
+  {
+    title: 'Schedule Follow-ups',
+    description: 'Set reminders for every lead so you never forget to follow up. Get notified before deals go cold.',
+    screenshotLabel: 'Follow-up Scheduler',
+  },
+  {
+    title: 'Close More Deals',
+    description: 'Move leads through your pipeline from New to Won. Track every interaction and see your conversion rate grow.',
+    screenshotLabel: 'Status Pipeline',
+  },
+]
+
 const stats = [
   { value: '10x', label: 'More follow-ups completed' },
   { value: '99%', label: 'Uptime guarantee' },
-  { value: '0', label: 'Lost leads (in theory)' },
 ]
 
 export default async function LandingPage() {
@@ -79,6 +96,12 @@ export default async function LandingPage() {
                 className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
               >
                 Demo
+              </Link>
+              <Link
+                href="#how-it-works"
+                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+              >
+                How it Works
               </Link>
               {session?.user ? (
                 <Link href="/dashboard">
@@ -122,9 +145,9 @@ export default async function LandingPage() {
             No complexity of enterprise software.
           </p>
           <div className="flex justify-center gap-4">
-            <Link href="/register">
+            <Link href="#how-it-works">
               <Button size="lg" className="shadow-lg">
-                Start Free Trial
+                How it Works
               </Button>
             </Link>
             <Link href="#features">
@@ -219,6 +242,62 @@ export default async function LandingPage() {
             </div>
           </div>
         </section>
+
+        <section
+          id="how-it-works"
+          className="mx-auto max-w-6xl px-6 py-24"
+        >
+          <div className="mb-16 text-center">
+            <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary shadow-inner mb-6 block">
+              How LeadFlow Works
+            </span>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+              From first contact to closed deal
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Capture leads, schedule follow-ups, and never let an opportunity go cold.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {steps.map((step, i) => (
+              <div
+                key={step.title}
+                className={`relative p-8 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 step-card opacity-0 translate-y-8 ${i === 0 ? 'animate-in' : ''}`}
+                data-step={i + 1}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <span className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-primary shadow-lg step-number transition-all duration-300 group-hover:scale-110`}>
+                    {i + 1}
+                  </span>
+                  <h3 className="text-xl font-semibold">{step.title}</h3>
+                </div>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">{step.description}</p>
+                <div className="relative h-48 w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 step-screenshot">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center opacity-50 group-hover:opacity-100 transition-opacity">
+                      <svg className="mx-auto mb-3 h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Dashboard preview</p>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-gray-900/90 dark:from-gray-900/90 to-transparent">
+                    <span className="text-xs font-medium text-white">{step.screenshotLabel}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 flex justify-center">
+            <Link href="/register">
+              <Button size="lg" className="shadow-lg">
+                Get Started Today
+              </Button>
+            </Link>
+          </div>
+        </section>
       </main>
 
       <footer className="border-t border-gray-100/50 dark:border-gray-800/50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm">
@@ -244,6 +323,26 @@ export default async function LandingPage() {
           </div>
         </div>
       </footer>
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              const observer = new IntersectionObserver(
+                (entries) => {
+                  entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                      entry.target.classList.add('animate-in');
+                    }
+                  });
+                },
+                { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
+              );
+              document.querySelectorAll('.step-card').forEach((el) => observer.observe(el));
+            })();
+          `,
+        }}
+      />
     </div>
   )
 }
