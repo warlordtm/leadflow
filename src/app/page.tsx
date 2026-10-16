@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { auth } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import HeroSection from '@/components/landing/hero-wrapper'
-import FeatureIcon3D from '@/components/landing/feature-icon'
 
 const features = [
   {
@@ -60,11 +59,53 @@ const steps = [
   },
 ]
 
+const FeatureIcon = ({ title }: { title: string }) => {
+  const icons = {
+    'Capture Every Lead': (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>
+    ),
+    'Smart Follow-up Scheduler': (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    'Status Pipeline': (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h-2v4h2V8zm0 0l4 4m-4-4V6h4m0 0l-4 4m4 4v4m0 0h-4m4 4l4-4m-4 4H5m4-4V8h4m0 0v4m0 0H5m4 4v4m0 0H5" />
+      </svg>
+    ),
+    'Activity History': (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+    'Team Roles': (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    ),
+    'Secure by Design': (
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  }
+  return (
+    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/5">
+      {icons[title as keyof typeof icons] || icons['Capture Every Lead']}
+    </div>
+  )
+}
+
 const stats = [
   { value: '10x', label: 'More follow-ups completed' },
   { value: '99%', label: 'Uptime guarantee' },
   { value: '500+', label: 'leads followed up' },
 ]
+
+const featureSectionAnimate = (i: number) => `feature-card opacity-0 translate-y-8 transition-all duration-700 ease-out ${i === 0 ? 'animate-in' : ''}`
 
 export default async function LandingPage() {
   const session = await auth()
@@ -213,19 +254,24 @@ export default async function LandingPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => (
+            {features.map((feature, i) => (
               <div
                 key={feature.title}
-                className="group relative p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1"
+                className={`group relative p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:-translate-y-2 feature-card opacity-0 translate-y-8 ${i === 0 ? 'animate-in' : ''}`}
+                data-feature={feature.title}
               >
-                <div className="absolute -top-2 -right-2 -z-10 h-24 w-24 rounded-full bg-gradient-to-br from-primary/5 to-accent/5 blur-2xl group-hover:from-primary/10 group-hover:to-accent/10 transition-all duration-500" />
-                <FeatureIcon3D title={feature.title} />
-                <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-gray-100">
+                <FeatureIcon title={feature.title} />
+                <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-primary dark:group-hover:text-primary transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed group-hover:text-gray-500 dark:group-hover:text-gray-400 transition-colors">
                   {feature.description}
                 </p>
+                <div className="mt-6 flex h-8 w-8 items-center justify-center rounded-full bg-primary/5 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
               </div>
             ))}
           </div>
@@ -360,7 +406,7 @@ export default async function LandingPage() {
                 },
                 { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
               );
-              document.querySelectorAll('.step-card').forEach((el) => observer.observe(el));
+              document.querySelectorAll('.step-card, .feature-card').forEach((el) => observer.observe(el));
             })();
           `,
         }}
