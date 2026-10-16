@@ -73,3 +73,11 @@ export function useTranslations() {
   }
   return context.t
 }
+
+export function useLocale() {
+  const context = useContext(TranslationContext)
+  if (!context) {
+    throw new Error('useLocale must be used within an I18nProvider')
+  }
+  return context
+}

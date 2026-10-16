@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { logger } from '@/lib/logger'
-import { useTranslations } from '@/components/i18n-provider'
+import { useTranslations, useLocale } from '@/components/i18n-provider'
+import type { Locale } from '@/lib/i18n'
 
 interface Settings {
   theme: 'light' | 'dark' | 'system'
@@ -45,6 +46,7 @@ const applyLanguage = (language: string) => {
 
 export default function AppearanceSettingsPage() {
   const t = useTranslations()
+  const { setLocale } = useLocale()
   const [saved, setSaved] = useState(false)
   const [settings, setSettings] = useState<Settings>({
     theme: 'light',
@@ -89,6 +91,7 @@ export default function AppearanceSettingsPage() {
     }
     if (key === 'language') {
       applyLanguage(value)
+      setLocale(value as Locale)
     }
     localStorage.setItem('appearance-settings', JSON.stringify({ ...settings, [key]: value }))
   }
