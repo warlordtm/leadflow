@@ -13,16 +13,36 @@ export default function AccountSettingsPage() {
   const t = useTranslations()
   const [loading, setLoading] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [emailNotifications, setEmailNotifications] = useState(true)
+  const [smsNotifications, setSmsNotifications] = useState(false)
+  const [pushNotifications, setPushNotifications] = useState(true)
+  const [currentPassword, setCurrentPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
 
   const handleSave = async () => {
     setLoading(true)
     setSaved(false)
     try {
-      await new Promise(r => setTimeout(r, 500))
+      const res = await fetch('/api/auth/change-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPassword, newPassword, confirmPassword }),
+      })
+
+      if (!res.ok) {
+        const error = await res.json()
+        throw new Error(error.message || 'Failed to change password')
+      }
+
       setSaved(true)
       logger.info('Account settings saved')
+      setCurrentPassword('')
+      setNewPassword('')
+      setConfirmPassword('')
     } catch (e) {
       logger.error('Failed to save settings', { error: String(e) })
+      alert(e instanceof Error ? e.message : 'Failed to save settings')
     } finally {
       setLoading(false)
     }
@@ -38,15 +58,30 @@ export default function AccountSettingsPage() {
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="current-password">{t('settings.currentPassword')}</Label>
-            <Input id="current-password" type="password" />
+            <Input
+              id="current-password"
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="new-password">{t('settings.newPassword')}</Label>
-            <Input id="new-password" type="password" />
+            <Input
+              id="new-password"
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="confirm-password">{t('settings.confirmNewPassword')}</Label>
-            <Input id="confirm-password" type="password" />
+            <Input
+              id="confirm-password"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
           </div>
         </CardContent>
       </Card>
@@ -62,21 +97,35 @@ export default function AccountSettingsPage() {
               <Label htmlFor="email-notifications">{t('settings.emailNotifications')}</Label>
               <p className="text-sm text-gray-500">{t('settings.emailNotificationsDesc') || 'Receive email notifications for new leads and follow-ups'}</p>
             </div>
-            <Switch id="email-notifications" defaultChecked />
+            <Switch
+              id="email-notifications"
+              checked={emailNotifications}
+              onCheckedChange={setEmailNotifications}
+              defaultChecked
+            />
           </div>
           <div className="flex items-center justify-between">
             <div>
               <Label htmlFor="sms-notifications">{t('settings.smsNotifications')}</Label>
               <p className="text-sm text-gray-500">{t('settings.smsNotificationsDesc') || 'Receive SMS for urgent follow-ups'}</p>
             </div>
-            <Switch id="sms-notifications" />
+            <Switch
+              id="sms-notifications"
+              checked={smsNotifications}
+              onCheckedChange={setSmsNotifications}
+            />
           </div>
           <div className="flex items-center justify-between">
             <div>
               <Label htmlFor="push-notifications">{t('settings.pushNotifications')}</Label>
               <p className="text-sm text-gray-500">{t('settings.pushNotificationsDesc') || 'Receive push notifications in your browser'}</p>
             </div>
-            <Switch id="push-notifications" defaultChecked />
+            <Switch
+              id="push-notifications"
+              checked={pushNotifications}
+              onCheckedChange={setPushNotifications}
+              defaultChecked
+            />
           </div>
         </CardContent>
       </Card>
