@@ -273,14 +273,6 @@ export default async function LandingPage() {
               ))}
             </div>
           </div>
-
-          <div className="mt-24 flex justify-center">
-            <Link href="/register">
-              <Button size="lg" className="shadow-xl shadow-primary/25">
-                Get Started Today
-              </Button>
-            </Link>
-          </div>
         </section>
 
         <section
