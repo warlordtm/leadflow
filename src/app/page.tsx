@@ -40,7 +40,7 @@ const features = [
 const steps = [
   {
     title: 'Capture Leads',
-    description: 'Add leads manually or import them from any source. Track contact details, status, and source in one place.',
+    description: 'Add leads manually and track contact details, status, and source in one place.',
     screenshotLabel: 'Lead Capture',
   },
   {
@@ -49,9 +49,19 @@ const steps = [
     screenshotLabel: 'Follow-up Scheduler',
   },
   {
-    title: 'Close More Deals',
-    description: 'Move leads through your pipeline from New to Won. Track every interaction and see your conversion rate grow.',
+    title: 'Track Every Interaction',
+    description: 'Log calls, emails, and meetings. View a full activity history for each lead.',
+    screenshotLabel: 'Activity History',
+  },
+  {
+    title: 'Move Through Pipeline',
+    description: 'Update lead status from New to Contacted to Won. Watch your conversion rate grow.',
     screenshotLabel: 'Status Pipeline',
+  },
+  {
+    title: 'Close More Deals',
+    description: 'See your pipeline at a glance with the dashboard. Never lose a lead again.',
+    screenshotLabel: 'Dashboard',
   },
 ]
 
@@ -205,45 +215,6 @@ export default async function LandingPage() {
         </section>
 
         <section
-          id="demo"
-          className="mx-auto max-w-6xl px-6 py-16 sm:py-24"
-        >
-          <div className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-gray-800 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-2xl">
-            <div className="absolute inset-0 bg-grid-gray-200/40 dark:bg-grid-gray-800/40 [mask-image:linear-gradient(to_bottom,white_0%,transparent_100%)]" />
-            <div className="relative flex h-[420px] items-center justify-center">
-              <div className="z-10 text-center">
-                <div className="mb-6 inline-flex h-24 w-24 items-center justify-center rounded-full bg-primary/5">
-                  <svg
-                    className="h-12 w-12 text-primary"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5.106 11.854c0 3-3 3-3 3s2.994.994 3 3 3 3 3-3 3-3 3-3 0 0 0 0 3-3 3-3-2.995-3-3-3 0-3-3 0-3-3-3s0-3 0-3-2.995 0-3 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="mb-3 text-2xl font-bold text-gray-900 dark:text-gray-100">
-                  Ready to stop losing leads?
-                </h3>
-                <p className="mb-6 text-gray-600 dark:text-gray-400">
-                  Join 500+ freelancers who never miss a follow-up.
-                </p>
-                <Link href="/register">
-                  <Button size="lg" className="shadow-lg">
-                    Get Started in 30 Seconds
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
           id="how-it-works"
           className="mx-auto max-w-6xl px-6 py-24"
         >
@@ -296,6 +267,45 @@ export default async function LandingPage() {
                 Get Started Today
               </Button>
             </Link>
+          </div>
+        </section>
+
+        <section
+          id="demo"
+          className="mx-auto max-w-6xl px-6 py-16 sm:py-24"
+        >
+          <div className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-gray-800 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-2xl">
+            <div className="absolute inset-0 bg-grid-gray-200/40 dark:bg-grid-gray-800/40 [mask-image:linear-gradient(to_bottom,white_0%,transparent_100%)]" />
+            <div className="relative flex h-[420px] items-center justify-center">
+              <div className="z-10 text-center">
+                <div className="mb-6 inline-flex h-24 w-24 items-center justify-center rounded-full bg-primary/5">
+                  <svg
+                    className="h-12 w-12 text-primary"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5.106 11.854c0 3-3 3-3 3s2.994.994 3 3 3 3 3-3 3-3 3-3 0 0 0 0 3-3 3-3-2.995-3-3-3 0-3-3 0-3-3-3s0-3 0-3-2.995 0-3 0z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-3 text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  Ready to stop losing leads?
+                </h3>
+                <p className="mb-6 text-gray-600 dark:text-gray-400">
+                  Join 500+ freelancers who never miss a follow-up.
+                </p>
+                <Link href="/register">
+                  <Button size="lg" className="shadow-lg">
+                    Get Started in 30 Seconds
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
       </main>
