@@ -78,7 +78,7 @@ export default async function LandingPage() {
         <HeroSection />
       </div>
 
-      <header className="border-b border-gray-100/50 dark:border-gray-800/50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-gray-100/50 dark:border-gray-800/50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
         <div className="mx-auto max-w-6xl px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
@@ -236,13 +236,20 @@ export default async function LandingPage() {
           className="relative mx-auto max-w-6xl px-6 py-32 overflow-hidden"
         >
           <div className="mb-16 text-center relative z-10">
-            <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary shadow-inner mb-6 block">
-              How LeadFlow Works
-            </span>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary shadow-inner">
+                Step-by-step
+              </span>
+            </div>
             <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
               From first contact to closed deal
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            <div className="mt-4 w-20 h-1 bg-gradient-to-r from-primary to-accent rounded-full mx-auto" />
+            <p className="mt-6 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
               Capture leads, schedule follow-ups, and never let an opportunity go cold.
             </p>
           </div>
