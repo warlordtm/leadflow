@@ -7,14 +7,16 @@ import NavBar from '@/components/nav-bar'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from '@/components/i18n-provider'
 
 const settingsLinks = [
-  { href: '/settings/profile', label: 'Profile', desc: 'Manage your personal information' },
-  { href: '/settings/account', label: 'Account', desc: 'Password, security, and notifications' },
-  { href: '/settings/appearance', label: 'Appearance', desc: 'Theme and display preferences' },
+  { href: '/settings/profile', labelKey: 'settings.profile', descKey: 'settings.managePersonalInfo' },
+  { href: '/settings/account', labelKey: 'settings.account', descKey: 'settings.passwordDesc' },
+  { href: '/settings/appearance', labelKey: 'settings.appearance', descKey: 'settings.themeDesc' },
 ]
 
 export default function SettingsLayout({ children }: { children?: ReactNode }) {
+  const t = useTranslations()
   const pathname = usePathname()
   const { data: session } = useSession()
 
@@ -23,7 +25,7 @@ export default function SettingsLayout({ children }: { children?: ReactNode }) {
       <NavBar />
       <div className="mx-auto max-w-6xl px-6 pt-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-8">
-          Settings
+          {t('settings.title')}
         </h1>
 
         <div className="grid grid-cols-12 gap-8">
@@ -42,8 +44,8 @@ export default function SettingsLayout({ children }: { children?: ReactNode }) {
                         : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                     )}
                   >
-                    {link.label}
-                    <span className="text-xs text-gray-500">{link.desc}</span>
+                    {t(link.labelKey)}
+                    <span className="text-xs text-gray-500">{t(link.descKey)}</span>
                   </Link>
                 )
               })}

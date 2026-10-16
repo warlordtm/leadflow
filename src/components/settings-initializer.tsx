@@ -32,11 +32,6 @@ export default function SettingsInitializer({ children }: { children: React.Reac
             root.classList.remove('density-compact', 'density-comfortable', 'density-spacious')
             root.classList.add(`density-${settings.density}`)
           }
-
-          // Apply language
-          if (settings.language) {
-            document.documentElement.lang = settings.language
-          }
         } catch (e) {
           console.error('Failed to load appearance settings:', e)
         }

@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { logger } from '@/lib/logger'
+import { useTranslations } from '@/components/i18n-provider'
 
 interface Settings {
   theme: 'light' | 'dark' | 'system'
@@ -43,6 +44,7 @@ const applyLanguage = (language: string) => {
 }
 
 export default function AppearanceSettingsPage() {
+  const t = useTranslations()
   const [saved, setSaved] = useState(false)
   const [settings, setSettings] = useState<Settings>({
     theme: 'light',
@@ -95,35 +97,35 @@ export default function AppearanceSettingsPage() {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Theme</CardTitle>
-          <CardDescription>Choose how the app looks and feels</CardDescription>
+          <CardTitle>{t('settings.appearance')}</CardTitle>
+          <CardDescription>{t('settings.themeDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="theme">Color Theme</Label>
+            <Label htmlFor="theme">{t('settings.theme')}</Label>
             <select
               id="theme"
               value={settings.theme}
               onChange={(e) => handleThemeChange(e.target.value as Settings['theme'])}
               className="w-48 rounded-md border border-border px-2 py-1 text-sm"
             >
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="system">System</option>
+              <option value="light">{t('dates.light')}</option>
+              <option value="dark">{t('dates.dark')}</option>
+              <option value="system">{t('dates.system')}</option>
             </select>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="density">Density</Label>
+            <Label htmlFor="density">{t('settings.density')}</Label>
             <select
               id="density"
               value={settings.density}
               onChange={(e) => handleSettingChange('density', e.target.value)}
               className="w-48 rounded-md border border-border px-2 py-1 text-sm"
             >
-              <option value="compact">Compact</option>
-              <option value="comfortable">Comfortable</option>
-              <option value="spacious">Spacious</option>
+              <option value="compact">{t('dates.compact')}</option>
+              <option value="comfortable">{t('dates.comfortable')}</option>
+              <option value="spacious">{t('dates.spacious')}</option>
             </select>
           </div>
         </CardContent>
@@ -131,35 +133,35 @@ export default function AppearanceSettingsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Date & Time Format</CardTitle>
-          <CardDescription>Configure how dates and times are displayed</CardDescription>
+          <CardTitle>{t('settings.dateFormat')}</CardTitle>
+          <CardDescription>{t('common.simpleSecureCRM')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="date-format">Date Format</Label>
+            <Label htmlFor="date-format">{t('settings.dateFormat')}</Label>
             <select
               id="date-format"
               value={settings.dateFormat}
               onChange={(e) => handleSettingChange('dateFormat', e.target.value)}
               className="w-48 rounded-md border border-border px-2 py-1 text-sm"
             >
-              <option value="MM/dd/yyyy">MM/DD/YYYY</option>
-              <option value="dd/MM/yyyy">DD/MM/YYYY</option>
-              <option value="yyyy-MM-dd">YYYY-MM-DD</option>
-              <option value="MMM dd, yyyy">MMM DD, YYYY</option>
+              <option value="MM/dd/yyyy">{t('dates.MM/dd/yyyy')}</option>
+              <option value="dd/MM/yyyy">{t('dates.dd/MM/yyyy')}</option>
+              <option value="yyyy-MM-dd">{t('dates.yyyy-MM-dd')}</option>
+              <option value="MMM dd, yyyy">{t('dates.MMM dd, yyyy')}</option>
             </select>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="time-format">Time Format</Label>
+            <Label htmlFor="time-format">{t('settings.timeFormat')}</Label>
             <select
               id="time-format"
               value={settings.timeFormat}
               onChange={(e) => handleSettingChange('timeFormat', e.target.value)}
               className="w-48 rounded-md border border-border px-2 py-1 text-sm"
             >
-              <option value="12h">12-hour (e.g. 2:30 PM)</option>
-              <option value="24h">24-hour (e.g. 14:30)</option>
+              <option value="12h">{t('dates.12h')}</option>
+              <option value="24h">{t('dates.24h')}</option>
             </select>
           </div>
         </CardContent>
@@ -167,31 +169,31 @@ export default function AppearanceSettingsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Language</CardTitle>
-          <CardDescription>Set your preferred language</CardDescription>
+          <CardTitle>{t('settings.language')}</CardTitle>
+          <CardDescription>{t('settings.languageDesc')}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
-            <Label htmlFor="language">Language</Label>
+            <Label htmlFor="language">{t('settings.language')}</Label>
             <select
               id="language"
               value={settings.language}
               onChange={(e) => handleSettingChange('language', e.target.value)}
               className="w-48 rounded-md border border-border px-2 py-1 text-sm"
             >
-              <option value="en">English</option>
-              <option value="es">Español</option>
-              <option value="fr">Français</option>
-              <option value="de">Deutsch</option>
+              <option value="en">{t('dates.english')}</option>
+              <option value="es">{t('dates.spanish')}</option>
+              <option value="fr">{t('dates.french')}</option>
+              <option value="de">{t('dates.german')}</option>
             </select>
           </div>
         </CardContent>
       </Card>
 
       <div className="flex justify-end">
-        {saved && <span className="text-green-600 text-sm mr-4">Saved successfully!</span>}
+        {saved && <span className="text-green-600 text-sm mr-4">{t('settings.savedSuccessfully')}</span>}
         <Button onClick={saveSettings}>
-          Save Preferences
+          {t('settings.savePreferences')}
         </Button>
       </div>
     </div>

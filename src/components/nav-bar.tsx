@@ -5,15 +5,17 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import LogoutButton from '@/components/logout-button'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from '@/components/i18n-provider'
 
 const links = [
-  { href: '/dashboard', label: 'Dashboard' },
-  { href: '/leads', label: 'Leads' },
-  { href: '/follow-ups', label: 'Follow-ups' },
-  { href: '/settings/profile', label: 'Settings' },
+  { href: '/dashboard', labelKey: 'nav.dashboard' },
+  { href: '/leads', labelKey: 'nav.leads' },
+  { href: '/follow-ups', labelKey: 'nav.followUps' },
+  { href: '/settings/profile', labelKey: 'nav.settings' },
 ]
 
 export default function NavBar() {
+  const t = useTranslations()
   const pathname = usePathname()
   const { data: session } = useSession()
   const isAdmin = (session?.user as { role: string } | undefined)?.role === 'ADMIN'
@@ -36,7 +38,7 @@ export default function NavBar() {
                       : 'text-gray-600 hover:text-gray-900'
                   )}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                   {isActive && (
                     <span className="absolute -bottom-2 left-0 right-0 h-0.5 w-full rounded-full bg-primary" />
                   )}
@@ -53,7 +55,7 @@ export default function NavBar() {
                     : 'text-gray-600 hover:text-gray-900'
                 )}
               >
-                Admin
+                {t('nav.admin')}
                 {pathname === '/admin' && (
                   <span className="absolute -bottom-2 left-0 right-0 h-0.5 w-full rounded-full bg-primary" />
                 )}
