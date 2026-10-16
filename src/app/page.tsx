@@ -65,6 +65,85 @@ const steps = [
   },
 ]
 
+function stepScreenshot(index: number) {
+  const screens = [
+    (
+      <div className="absolute inset-0 p-4 flex flex-col gap-2">
+        <div className="flex items-center justify-between">
+          <div className="w-24 h-4 bg-gray-200 dark:bg-gray-600 rounded" />
+          <div className="flex gap-2">
+            <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-800" />
+            <div className="w-6 h-6 rounded-full bg-yellow-100 dark:bg-yellow-800" />
+            <div className="w-6 h-6 rounded-full bg-red-100 dark:bg-red-800" />
+          </div>
+        </div>
+        <div className="mt-2 h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/3" />
+        <div className="mt-2 grid grid-cols-2 gap-2">
+          <div className="col-span-2 h-8 bg-gray-200 dark:bg-gray-600 rounded" />
+          <div className="h-8 bg-gray-200 dark:bg-gray-600 rounded" />
+          <div className="h-8 bg-gray-200 dark:bg-gray-600 rounded" />
+        </div>
+      </div>
+    ),
+    (
+      <div className="absolute inset-0 p-4 flex flex-col gap-2">
+        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/4" />
+        <div className="mt-2 flex gap-2">
+          <div className="flex-1 h-20 bg-gray-200 dark:bg-gray-600 rounded" />
+          <div className="flex-1 h-20 bg-gray-200 dark:bg-gray-600 rounded" />
+        </div>
+        <div className="mt-2 flex gap-2">
+          <div className="flex-1 h-20 bg-gray-200 dark:bg-gray-600 rounded" />
+          <div className="flex-1 h-20 bg-gray-200 dark:bg-gray-600 rounded" />
+        </div>
+      </div>
+    ),
+    (
+      <div className="absolute inset-0 p-4 flex flex-col gap-2">
+        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/3" />
+        <div className="mt-2 space-y-2">
+          <div className="flex gap-2">
+            <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full" />
+            <div className="flex-1 space-y-1">
+              <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
+              <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-1/2" />
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full" />
+            <div className="flex-1 space-y-1">
+              <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
+              <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-1/2" />
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+    (
+      <div className="absolute inset-0 p-4 flex flex-col gap-2">
+        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/2" />
+        <div className="mt-2 grid grid-cols-4 gap-2 h-24">
+          {[0, 1, 2, 3].map((col) => (
+            <div key={col} className="bg-gray-200 dark:bg-gray-600 rounded" />
+          ))}
+        </div>
+      </div>
+    ),
+    (
+      <div className="absolute inset-0 p-4 flex flex-col gap-2">
+        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/2" />
+        <div className="mt-2 grid grid-cols-2 gap-4">
+          <div className="col-span-2 h-24 bg-gray-200 dark:bg-gray-600 rounded" />
+          <div className="h-12 bg-gray-200 dark:bg-gray-600 rounded" />
+          <div className="h-12 bg-gray-200 dark:bg-gray-600 rounded" />
+        </div>
+      </div>
+    ),
+  ]
+
+  return screens[index]
+}
+
 const stats = [
   { value: '10x', label: 'More follow-ups completed' },
   { value: '99%', label: 'Uptime guarantee' },
@@ -230,35 +309,30 @@ export default async function LandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((step, i) => (
-              <div
-                key={step.title}
-                className={`relative p-8 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 step-card opacity-0 translate-y-8 ${i === 0 ? 'animate-in' : ''}`}
-                data-step={i + 1}
-              >
-                <div className="flex items-center gap-3 mb-6">
-                  <span className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-primary shadow-lg step-number transition-all duration-300 group-hover:scale-110`}>
-                    {i + 1}
-                  </span>
-                  <h3 className="text-xl font-semibold">{step.title}</h3>
-                </div>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">{step.description}</p>
-                <div className="relative h-48 w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 step-screenshot">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center opacity-50 group-hover:opacity-100 transition-opacity">
-                      <svg className="mx-auto mb-3 h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">Dashboard preview</p>
+          <div className="mx-auto max-w-5xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+              {steps.map((step, i) => (
+                <div
+                  key={step.title}
+                  className="relative p-8 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 step-card opacity-0 translate-y-8 max-w-md"
+                  data-step={i + 1}
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-primary shadow-lg step-number transition-all duration-300 group-hover:scale-110`}>
+                      {i + 1}
+                    </span>
+                    <h3 className="text-xl font-semibold">{step.title}</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400 mb-6">{step.description}</p>
+                  <div className="relative h-56 w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 step-screenshot">
+                    {stepScreenshot(i)}
+                    <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-gray-900/90 dark:from-gray-900/90 to-transparent">
+                      <span className="text-xs font-medium text-white">{step.screenshotLabel}</span>
                     </div>
                   </div>
-                  <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-gray-900/90 dark:from-gray-900/90 to-transparent">
-                    <span className="text-xs font-medium text-white">{step.screenshotLabel}</span>
-                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div className="mt-16 flex justify-center">
