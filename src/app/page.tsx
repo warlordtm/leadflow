@@ -41,108 +41,24 @@ const steps = [
   {
     title: 'Capture Leads',
     description: 'Add leads manually and track contact details, status, and source in one place.',
-    screenshotLabel: 'Lead Capture',
   },
   {
     title: 'Schedule Follow-ups',
     description: 'Set reminders for every lead so you never forget to follow up. Get notified before deals go cold.',
-    screenshotLabel: 'Follow-up Scheduler',
   },
   {
     title: 'Track Every Interaction',
     description: 'Log calls, emails, and meetings. View a full activity history for each lead.',
-    screenshotLabel: 'Activity History',
   },
   {
     title: 'Move Through Pipeline',
     description: 'Update lead status from New to Contacted to Won. Watch your conversion rate grow.',
-    screenshotLabel: 'Status Pipeline',
   },
   {
     title: 'Close More Deals',
     description: 'See your pipeline at a glance with the dashboard. Never lose a lead again.',
-    screenshotLabel: 'Dashboard',
   },
 ]
-
-function stepScreenshot(index: number) {
-  const screens = [
-    (
-      <div className="absolute inset-0 p-4 flex flex-col gap-2">
-        <div className="flex items-center justify-between">
-          <div className="w-24 h-4 bg-gray-200 dark:bg-gray-600 rounded" />
-          <div className="flex gap-2">
-            <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-800" />
-            <div className="w-6 h-6 rounded-full bg-yellow-100 dark:bg-yellow-800" />
-            <div className="w-6 h-6 rounded-full bg-red-100 dark:bg-red-800" />
-          </div>
-        </div>
-        <div className="mt-2 h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/3" />
-        <div className="mt-2 grid grid-cols-2 gap-2">
-          <div className="col-span-2 h-8 bg-gray-200 dark:bg-gray-600 rounded" />
-          <div className="h-8 bg-gray-200 dark:bg-gray-600 rounded" />
-          <div className="h-8 bg-gray-200 dark:bg-gray-600 rounded" />
-        </div>
-      </div>
-    ),
-    (
-      <div className="absolute inset-0 p-4 flex flex-col gap-2">
-        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/4" />
-        <div className="mt-2 flex gap-2">
-          <div className="flex-1 h-20 bg-gray-200 dark:bg-gray-600 rounded" />
-          <div className="flex-1 h-20 bg-gray-200 dark:bg-gray-600 rounded" />
-        </div>
-        <div className="mt-2 flex gap-2">
-          <div className="flex-1 h-20 bg-gray-200 dark:bg-gray-600 rounded" />
-          <div className="flex-1 h-20 bg-gray-200 dark:bg-gray-600 rounded" />
-        </div>
-      </div>
-    ),
-    (
-      <div className="absolute inset-0 p-4 flex flex-col gap-2">
-        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/3" />
-        <div className="mt-2 space-y-2">
-          <div className="flex gap-2">
-            <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full" />
-            <div className="flex-1 space-y-1">
-              <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
-              <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-1/2" />
-            </div>
-          </div>
-          <div className="flex gap-2">
-            <div className="w-10 h-10 bg-gray-200 dark:bg-gray-600 rounded-full" />
-            <div className="flex-1 space-y-1">
-              <div className="h-3 bg-gray-200 dark:bg-gray-600 rounded w-3/4" />
-              <div className="h-2 bg-gray-200 dark:bg-gray-600 rounded w-1/2" />
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-    (
-      <div className="absolute inset-0 p-4 flex flex-col gap-2">
-        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/2" />
-        <div className="mt-2 grid grid-cols-4 gap-2 h-24">
-          {[0, 1, 2, 3].map((col) => (
-            <div key={col} className="bg-gray-200 dark:bg-gray-600 rounded" />
-          ))}
-        </div>
-      </div>
-    ),
-    (
-      <div className="absolute inset-0 p-4 flex flex-col gap-2">
-        <div className="h-4 bg-gray-200 dark:bg-gray-600 rounded w-1/2" />
-        <div className="mt-2 grid grid-cols-2 gap-4">
-          <div className="col-span-2 h-24 bg-gray-200 dark:bg-gray-600 rounded" />
-          <div className="h-12 bg-gray-200 dark:bg-gray-600 rounded" />
-          <div className="h-12 bg-gray-200 dark:bg-gray-600 rounded" />
-        </div>
-      </div>
-    ),
-  ]
-
-  return screens[index]
-}
 
 const stats = [
   { value: '10x', label: 'More follow-ups completed' },
@@ -325,12 +241,6 @@ export default async function LandingPage() {
                     <h3 className="text-xl font-semibold">{step.title}</h3>
                   </div>
                   <p className="text-gray-600 dark:text-gray-400 mb-6">{step.description}</p>
-                  <div className="relative h-56 w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 step-screenshot">
-                    {stepScreenshot(i)}
-                    <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-gray-900/90 dark:from-gray-900/90 to-transparent">
-                      <span className="text-xs font-medium text-white">{step.screenshotLabel}</span>
-                    </div>
-                  </div>
                 </div>
               ))}
             </div>
