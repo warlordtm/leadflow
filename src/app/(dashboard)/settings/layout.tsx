@@ -3,7 +3,6 @@
 import { useState, useEffect, ReactNode } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import NavBar from '@/components/nav-bar'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import { useSession } from 'next-auth/react'
@@ -21,8 +20,7 @@ export default function SettingsLayout({ children }: { children?: ReactNode }) {
   const { data: session } = useSession()
 
   return (
-    <div className="min-h-screen bg-background pb-12">
-      <NavBar />
+    <div>
       <div className="mx-auto max-w-6xl px-6 pt-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-8">
           {t('settings.title')}

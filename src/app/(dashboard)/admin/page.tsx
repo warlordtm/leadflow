@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import NavBar from '@/components/nav-bar'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -83,8 +82,7 @@ export default function AdminPage() {
   }, [activeTab])
 
   return (
-    <div className="min-h-screen bg-background pb-12">
-      <NavBar />
+    <div>
       <div className="mx-auto max-w-6xl px-6 pt-8">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">

@@ -3,7 +3,6 @@
 import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import NavBar from '@/components/nav-bar'
 import { Button } from '@/components/ui/button'
 import { Input, Textarea } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
@@ -156,8 +155,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background pb-12">
-        <NavBar />
+      <div>
         <div className="mx-auto max-w-4xl px-6 pt-8">
           <div className="h-8 w-48 animate-pulse rounded bg-gray-200 mb-6" />
           <div className="mb-6 h-6 w-32 animate-pulse rounded bg-gray-200" />
@@ -174,8 +172,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
 
   if (!lead) {
     return (
-      <div className="min-h-screen bg-background pb-12">
-        <NavBar />
+      <div>
         <div className="mx-auto max-w-4xl px-6 pt-8">
           <p className="text-gray-500">Lead not found.</p>
         </div>
@@ -184,8 +181,7 @@ export default function LeadDetailPage({ params }: { params: Promise<{ id: strin
   }
 
   return (
-    <div className="min-h-screen bg-background pb-12">
-      <NavBar />
+    <div>
       <div className="mx-auto max-w-4xl px-6 pt-8">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">

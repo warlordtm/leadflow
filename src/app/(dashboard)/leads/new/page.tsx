@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import NavBar from '@/components/nav-bar'
 import { Button } from '@/components/ui/button'
 import { Input, Textarea } from '@/components/ui/input'
 
@@ -49,8 +48,7 @@ export default function NewLeadPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-12">
-      <NavBar />
+    <div>
       <div className="mx-auto max-w-2xl px-6 pt-8">
         <div className="mb-6 flex items-center justify-between">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
