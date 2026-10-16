@@ -165,7 +165,11 @@ export default {
     "timeout1h": "1 heure",
     "timeout2h": "2 heures",
     "timeout8h": "8 heures",
-    "saving": "Enregistrement..."
+    "saving": "Enregistrement...",
+    "active": "Actif",
+    "expired": "Expiré",
+    "revoking": "Révoquation...",
+    "noActiveSessions": "Aucune session active trouvée."
   },
   "admin": {
     "title": "Panneau d'Administration",

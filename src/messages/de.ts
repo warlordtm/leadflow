@@ -165,7 +165,11 @@ export default {
     "timeout1h": "1 Stunde",
     "timeout2h": "2 Stunden",
     "timeout8h": "8 Stunden",
-    "saving": "Speichern..."
+    "saving": "Speichern...",
+    "active": "Aktiv",
+    "expired": "Abgelaufen",
+    "revoking": "Wird widerrufen...",
+    "noActiveSessions": "Keine aktiven Sitzungen gefunden."
   },
   "admin": {
     "title": "Admin-Panel",

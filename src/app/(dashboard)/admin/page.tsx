@@ -17,10 +17,16 @@ export default function AdminPage() {
     setLoading(true)
     try {
       const res = await fetch('/api/admin/users')
+      if (!res.ok) {
+        console.error('Error fetching users:', res.status)
+        setUsers([])
+        return
+      }
       const data = await res.json()
-      setUsers(data)
+      setUsers(Array.isArray(data) ? data : [])
     } catch (e) {
       console.error('Error fetching users:', e)
+      setUsers([])
     } finally {
       setLoading(false)
     }
@@ -30,10 +36,16 @@ export default function AdminPage() {
     setLoading(true)
     try {
       const res = await fetch('/api/leads')
+      if (!res.ok) {
+        console.error('Error fetching leads:', res.status)
+        setLeads([])
+        return
+      }
       const data = await res.json()
-      setLeads(data)
+      setLeads(Array.isArray(data) ? data : [])
     } catch (e) {
       console.error('Error fetching leads:', e)
+      setLeads([])
     } finally {
       setLoading(false)
     }
@@ -44,7 +56,7 @@ export default function AdminPage() {
       await fetch(`/api/leads/${leadId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ownerUserId: newOwnerId }),
+        body: JSON.stringify({ ownerUserId: newOwnerId || null }),
       })
       fetchLeads()
     } catch (e) {
@@ -119,19 +131,24 @@ export default function AdminPage() {
                     <td className="py-3 text-sm font-medium text-gray-900">{user.name || '-'}</td>
                     <td className="py-3 text-sm text-gray-600">{user.email}</td>
                     <td className="py-3">
-                      <select
-                        value={user.role}
-                        onChange={(e) => updateUserRole(user.id, e.target.value)}
-                        className="w-32 rounded-md border border-border px-2 py-1 text-sm"
-                      >
-                        <option value="ADMIN">ADMIN</option>
-                        <option value="STAFF">STAFF</option>
-                      </select>
+                      <div className="space-y-1">
+                        <select
+                          value={user.role}
+                          onChange={(e) => updateUserRole(user.id, e.target.value)}
+                          className="w-full rounded-md border border-border px-2 py-1 text-sm"
+                        >
+                          <option value="ADMIN">ADMIN</option>
+                          <option value="STAFF">STAFF</option>
+                        </select>
+                        <Badge variant={user.role === 'ADMIN' ? 'warning' : 'secondary'} className="text-xs">
+                          {user.role}
+                        </Badge>
+                      </div>
                     </td>
                     <td className="py-3">
-                      <Badge variant={user.role === 'ADMIN' ? 'warning' : 'secondary'}>
-                        {user.role}
-                      </Badge>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-gray-500">Role updated</span>
+                      </div>
                     </td>
                   </tr>
                 ))}

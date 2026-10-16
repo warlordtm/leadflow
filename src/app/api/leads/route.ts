@@ -24,8 +24,10 @@ export async function GET(req: Request) {
       source,
     })
 
-    const where: any = {
-      ownerUserId: user.id,
+    const where: any = {}
+
+    if (user.role !== 'ADMIN') {
+      where.ownerUserId = user.id
     }
 
     if (parsed.status) {

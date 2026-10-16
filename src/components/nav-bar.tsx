@@ -21,7 +21,7 @@ export default function NavBar() {
   const isAdmin = (session?.user as { role: string } | undefined)?.role === 'ADMIN'
 
   return (
-    <nav className="mb-8 border-b border-border-subtle bg-white/80 backdrop-blur-sm">
+    <nav className="mb-8 border-b border-border-subtle bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
       <div className="mx-auto max-w-6xl">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-8">
@@ -35,7 +35,7 @@ export default function NavBar() {
                     'relative text-sm font-medium transition-all duration-200',
                     isActive
                       ? 'text-primary'
-                      : 'text-gray-600 hover:text-gray-900'
+                      : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                   )}
                 >
                   {t(link.labelKey)}
@@ -52,7 +52,7 @@ export default function NavBar() {
                   'relative text-sm font-medium transition-all duration-200',
                   pathname === '/admin'
                     ? 'text-primary'
-                    : 'text-gray-600 hover:text-gray-900'
+                    : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                 )}
               >
                 {t('nav.admin')}
