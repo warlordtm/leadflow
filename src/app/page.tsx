@@ -8,7 +8,7 @@ const features = [
   {
     title: 'Capture Every Lead',
     description:
-      'Never lose a lead again. Capture contact details from any source: WhatsApp, Instagram, email signatures, phone calls, in seconds.',
+      'Never lose a lead again. Capture contact details from WhatsApp, Instagram, email signatures, phone calls, in seconds.',
   },
   {
     title: 'Smart Follow-up Scheduler',
@@ -44,7 +44,7 @@ const steps = [
   },
   {
     title: 'Schedule Follow-ups',
-    description: 'Set reminders for every lead so you never forget to follow up. Get notified before deals go cold.',
+    description: 'Set reminders for every lead so you never forget to follow up.',
   },
   {
     title: 'Track Every Interaction',
@@ -52,11 +52,11 @@ const steps = [
   },
   {
     title: 'Move Through Pipeline',
-    description: 'Update lead status from New to Contacted to Won. Watch your conversion rate grow.',
+    description: 'Update lead status from New to Contacted to Won.',
   },
   {
     title: 'Close More Deals',
-    description: 'See your pipeline at a glance with the dashboard. Never lose a lead again.',
+    description: 'See your pipeline at a glance. Never lose a lead again.',
   },
 ]
 
@@ -81,31 +81,31 @@ export default async function LandingPage() {
       <header className="border-b border-gray-100/50 dark:border-gray-800/50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm sticky top-0 z-50">
         <div className="mx-auto max-w-6xl px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            <Link href="/" className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
               LeadFlow
             </Link>
-            <nav className="flex items-center gap-8">
+            <nav className="hidden md:flex items-center gap-8">
               <Link
                 href="#features"
-                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-primary dark:hover:text-primary"
               >
                 Features
               </Link>
               <Link
                 href="#stats"
-                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-primary dark:hover:text-primary"
               >
                 Results
               </Link>
               <Link
                 href="#demo"
-                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-primary dark:hover:text-primary"
               >
                 Demo
               </Link>
               <Link
                 href="#how-it-works"
-                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-primary dark:hover:text-primary"
               >
                 How it Works
               </Link>
@@ -119,7 +119,7 @@ export default async function LandingPage() {
                 <>
                   <Link
                     href="/login"
-                    className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+                    className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-primary dark:hover:text-primary"
                   >
                     Login
                   </Link>
@@ -131,28 +131,42 @@ export default async function LandingPage() {
                 </>
               )}
             </nav>
+            <div className="md:hidden">
+              <button className="p-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
       <main>
-        <section className="mx-auto max-w-6xl px-6 pt-28 pb-20 text-center">
-          <div className="mb-8">
-            <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary shadow-inner">
-              Built for freelancers. Designed for humans.
+        <section className="mx-auto max-w-5xl px-6 pt-28 pb-32 text-center">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary shadow-inner">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
+            Built for freelancers. Designed for humans.
           </div>
-          <h1 className="mb-6 text-balance text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-100 md:text-6xl">
-            Never lose a lead because you forgot to follow up.
+          <h1 className="mb-6 text-balance text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 md:text-7xl lg:text-8xl">
+            Never lose a{' '}
+            <span className="relative">
+              <span className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-sm opacity-20"></span>
+              lead
+            </span>{' '}
+            because you forgot to follow up.
           </h1>
-          <p className="mx-auto mb-10 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
+          <p className="mx-auto mb-12 max-w-2xl text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
             LeadFlow is a simple, secure CRM for solopreneurs and small teams.
             Capture leads, schedule follow-ups, and close more deals.
             No complexity of enterprise software.
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="#how-it-works">
-              <Button size="lg" className="shadow-lg">
+              <Button size="lg" className="shadow-xl shadow-primary/20">
                 How it Works
               </Button>
             </Link>
@@ -166,16 +180,21 @@ export default async function LandingPage() {
 
         <section
           id="stats"
-          className="relative mx-auto max-w-6xl px-6 py-16"
+          className="relative mx-auto max-w-6xl px-6 py-24 overflow-hidden"
         >
-          <div className="absolute inset-0 -z-10 rounded-3xl bg-gray-50/50 dark:bg-gray-800/50 to-transparent" />
+          <div className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-b from-gray-50/50 dark:from-gray-800/50 dark:to-transparent" />
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {stats.map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-4xl font-bold text-gray-900 dark:text-gray-100">
+              <div
+                key={i}
+                className="text-center px-4 py-8 rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 shadow-sm transition-all hover:shadow-md"
+              >
+                <div className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
                   {stat.value}
                 </div>
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{stat.label}</p>
+                <p className="mt-3 text-sm font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
+                  {stat.label}
+                </p>
               </div>
             ))}
           </div>
@@ -183,13 +202,13 @@ export default async function LandingPage() {
 
         <section
           id="features"
-          className="mx-auto max-w-6xl px-6 py-16 sm:py-24"
+          className="mx-auto max-w-6xl px-6 py-32"
         >
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
               Everything you need to close more deals
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
               Built with care for the people who turn conversations into clients.
             </p>
           </div>
@@ -197,14 +216,16 @@ export default async function LandingPage() {
             {features.map((feature) => (
               <div
                 key={feature.title}
-                className="group relative rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 p-8 shadow-sm transition-all duration-250 ease-emphasized hover:-translate-y-1 hover:shadow-md"
+                className="group relative p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1"
               >
                 <div className="absolute -top-2 -right-2 -z-10 h-24 w-24 rounded-full bg-gradient-to-br from-primary/5 to-accent/5 blur-2xl group-hover:from-primary/10 group-hover:to-accent/10 transition-all duration-500" />
                 <FeatureIcon3D title={feature.title} />
-                <h3 className="mb-3 text-xl font-semibold text-gray-900 dark:text-gray-100">
+                <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-gray-100">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{feature.description}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
@@ -212,43 +233,50 @@ export default async function LandingPage() {
 
         <section
           id="how-it-works"
-          className="mx-auto max-w-6xl px-6 py-24"
+          className="relative mx-auto max-w-6xl px-6 py-32 overflow-hidden"
         >
-          <div className="mb-16 text-center">
+          <div className="mb-16 text-center relative z-10">
             <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary shadow-inner mb-6 block">
               How LeadFlow Works
             </span>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+            <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
               From first contact to closed deal
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
               Capture leads, schedule follow-ups, and never let an opportunity go cold.
             </p>
           </div>
 
-          <div className="mx-auto max-w-5xl">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+          <div className="relative mx-auto max-w-5xl">
+            {/* Vertical connector line */}
+            <div className="absolute top-0 bottom-0 left-1/2 w-px bg-gray-200 dark:bg-gray-800 -z-10 hidden md:block" />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {steps.map((step, i) => (
                 <div
                   key={step.title}
-                  className="relative p-8 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 step-card opacity-0 translate-y-8 max-w-md"
+                  className="relative p-8 rounded-3xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-800 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 step-card opacity-0 translate-y-8 max-w-md mx-auto"
                   data-step={i + 1}
                 >
                   <div className="flex items-center gap-3 mb-6">
-                    <span className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-primary shadow-lg step-number transition-all duration-300 group-hover:scale-110`}>
+                    <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border-4 border-primary bg-white dark:bg-gray-900 text-primary shadow-lg step-number">
                       {i + 1}
                     </span>
-                    <h3 className="text-xl font-semibold">{step.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                      {step.title}
+                    </h3>
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6">{step.description}</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-16 flex justify-center">
+          <div className="mt-24 flex justify-center">
             <Link href="/register">
-              <Button size="lg" className="shadow-lg">
+              <Button size="lg" className="shadow-xl shadow-primary/25">
                 Get Started Today
               </Button>
             </Link>
@@ -257,12 +285,12 @@ export default async function LandingPage() {
 
         <section
           id="demo"
-          className="mx-auto max-w-6xl px-6 py-16 sm:py-24"
+          className="mx-auto max-w-6xl px-6 py-32"
         >
           <div className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-gray-800 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 shadow-2xl">
             <div className="absolute inset-0 bg-grid-gray-200/40 dark:bg-grid-gray-800/40 [mask-image:linear-gradient(to_bottom,white_0%,transparent_100%)]" />
-            <div className="relative flex h-[420px] items-center justify-center">
-              <div className="z-10 text-center">
+            <div className="relative flex h-[420px] items-center justify-center p-4">
+              <div className="z-10 text-center max-w-lg">
                 <div className="mb-6 inline-flex h-24 w-24 items-center justify-center rounded-full bg-primary/5">
                   <svg
                     className="h-12 w-12 text-primary"
@@ -278,14 +306,14 @@ export default async function LandingPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="mb-3 text-2xl font-bold text-gray-900 dark:text-gray-100">
+                <h3 className="mb-3 text-2xl font-extrabold text-gray-900 dark:text-gray-100 sm:text-3xl">
                   Ready to stop losing leads?
                 </h3>
-                <p className="mb-6 text-gray-600 dark:text-gray-400">
+                <p className="mb-8 text-gray-600 dark:text-gray-400 leading-relaxed">
                   Join 500+ freelancers who never miss a follow-up.
                 </p>
                 <Link href="/register">
-                  <Button size="lg" className="shadow-lg">
+                  <Button size="lg" className="shadow-lg shadow-primary/20">
                     Get Started in 30 Seconds
                   </Button>
                 </Link>
@@ -296,21 +324,21 @@ export default async function LandingPage() {
       </main>
 
       <footer className="border-t border-gray-100/50 dark:border-gray-800/50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm">
-        <div className="mx-auto max-w-6xl px-6 py-6">
-          <div className="flex items-center justify-between">
+        <div className="mx-auto max-w-6xl px-6 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               LeadFlow CRM. Built for people who follow through.
             </p>
             <div className="flex gap-6">
               <Link
                 href="/login"
-                className="text-sm text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-primary dark:hover:text-primary"
               >
                 Login
               </Link>
               <Link
                 href="/register"
-                className="text-sm text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white"
+                className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-primary dark:hover:text-primary"
               >
                 Register
               </Link>
