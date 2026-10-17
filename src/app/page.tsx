@@ -187,7 +187,7 @@ export default function LandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="#how-it-works"><Button size="lg">How it Works</Button></Link>
-            <Link href="#features"><Button variant="outline" size="lg" className="dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">Learn More</Button></Link>
+            <Link href="#features"><Button variant="outline" size="lg" className="dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700">Learn More</Button></Link>
           </div>
         </section>
 
