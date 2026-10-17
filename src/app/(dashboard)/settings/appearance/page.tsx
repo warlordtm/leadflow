@@ -137,7 +137,7 @@ export default function AppearanceSettingsPage() {
       <Card>
         <CardHeader>
           <CardTitle>{t('settings.dateFormat')}</CardTitle>
-          <CardDescription>{t('settings.dateFormatDesc') || 'Choose how dates are displayed'}</CardDescription>
+          <CardDescription>{'Choose how dates are displayed'}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
