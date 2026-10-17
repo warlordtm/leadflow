@@ -21,7 +21,7 @@ export default function SettingsLayout({ children }: { children?: ReactNode }) {
 
   return (
     <div>
-      <div className="mx-auto max-w-6xl px-6 pt-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-8">
           {t('settings.title')}
         </h1>

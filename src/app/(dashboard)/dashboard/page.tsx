@@ -62,7 +62,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div>
-        <div className="mx-auto max-w-6xl px-6 pt-8">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-8">
           <Skeleton className="mb-8 h-8 w-48" />
           <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
             {Array.from({ length: 6 }).map((_, i) => (
@@ -81,7 +81,7 @@ export default function DashboardPage() {
 
   return (
     <div>
-      <div className="mx-auto max-w-6xl px-6 pt-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-8">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-8">
           Dashboard
         </h1>

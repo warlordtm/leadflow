@@ -62,7 +62,7 @@ export default function LeadsPage() {
 
   return (
     <div>
-      <div className="mx-auto max-w-6xl px-6 pt-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-8">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900">
             Leads
