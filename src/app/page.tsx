@@ -113,7 +113,7 @@ export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
+    <div className="relative min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
       <div className="absolute inset-0 -z-10 h-[600px] w-full">
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
         <div className="absolute -left-4 -top-20 h-[500px] w-[500px] rounded-full bg-gradient-to-r from-primary/20 to-accent/20 blur-3xl" />
