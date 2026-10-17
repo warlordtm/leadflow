@@ -79,6 +79,15 @@ export default function LoginPage() {
             {loading ? 'Signing in...' : 'Sign In'}
           </Button>
         
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300" />
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="bg-white px-2 text-gray-500">or</span>
+          </div>
+        </div>
+
         <button
           type="button"
           onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
@@ -92,16 +101,6 @@ export default function LoginPage() {
           </svg>
           Sign in with Google
         </button>
-
-        
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300" />
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="bg-white px-2 text-gray-500">or</span>
-          </div>
-        </div>
 
         </form>
 
