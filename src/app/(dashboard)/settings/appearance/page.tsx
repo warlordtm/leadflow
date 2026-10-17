@@ -101,7 +101,7 @@ export default function AppearanceSettingsPage() {
       <Card>
         <CardHeader>
           <CardTitle>{t('settings.appearance')}</CardTitle>
-          <CardDescription>{t('settings.themeDesc')}</CardDescription>
+          
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
@@ -137,7 +137,6 @@ export default function AppearanceSettingsPage() {
       <Card>
         <CardHeader>
           <CardTitle>{t('settings.dateFormat')}</CardTitle>
-          <CardDescription>{'Choose how dates are displayed'}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
@@ -173,7 +172,7 @@ export default function AppearanceSettingsPage() {
       <Card>
         <CardHeader>
           <CardTitle>{t('settings.language')}</CardTitle>
-          <CardDescription>{t('settings.languageDesc')}</CardDescription>
+          
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
