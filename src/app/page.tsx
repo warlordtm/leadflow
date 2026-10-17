@@ -212,7 +212,7 @@ export default async function LandingPage() {
               </Button>
             </Link>
             <Link href="#features">
-              <Button variant="outline" size="lg" className="shadow-sm">
+              <Button variant="outline" size="lg" className="shadow-sm dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
                 Learn More
               </Button>
             </Link>
