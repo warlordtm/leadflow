@@ -121,7 +121,7 @@ export default function LandingPage() {
         <HeroSection />
       </div>
 
-      <header className="fixed top-0 left-0 right-0 border-b border-gray-100/50 dark:border-gray-800/50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md z-50 shadow-sm">
+      <header className="sticky top-0 z-50 border-b border-gray-100/50 dark:border-gray-800/50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm">
         <div className="mx-auto max-w-6xl px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
@@ -170,7 +170,7 @@ export default function LandingPage() {
       </header>
 
       <main>
-        <section className="mx-auto max-w-5xl px-6 pt-28 pb-32 text-center">
+        <section className="mx-auto max-w-5xl px-6 pt-12 pb-32 text-center">
           <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary shadow-inner">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
