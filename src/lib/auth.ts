@@ -59,7 +59,7 @@ export const authOptions: NextAuthOptions = {
 
         const isValid = await bcrypt.compare(
           credentials.password,
-          user.passwordHash
+          user.passwordHash as string
         )
 
         if (!isValid) {
@@ -81,17 +81,67 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user, account, profile }: any) {
+      // Allow Google sign in
+      if (account?.provider === 'google') {
+        try {
+          // Ensure user exists with a role
+          const existingUser = await prisma.user.findUnique({
+            where: { email: user.email! },
+          })
+          if (!existingUser) {
+            await prisma.user.create({
+              data: {
+                email: user.email!,
+                name: user.name || '',
+                passwordHash: null,
+                role: 'STAFF',
+              },
+            })
+          } else if (!existingUser.role) {
+            await prisma.user.update({
+              where: { email: user.email! },
+              data: { role: 'STAFF' },
+            })
+          }
+          return true
+        } catch (error) {
+          logger.error('Error in Google signIn callback:', { error: String(error) })
+          return false
+        }
+      }
+      return true
+    },
     async jwt({ token, user }: any) {
       if (user) {
-        token.role = user.role
+        token.role = user.role || 'STAFF'
         token.sub = user.id
+      }
+      // Ensure role is set for existing tokens - fetch from DB if missing
+      if (!token.role && token.email) {
+        try {
+          const dbUser = await prisma.user.findUnique({
+            where: { email: token.email },
+          })
+          if (dbUser) {
+            token.role = dbUser.role || 'STAFF'
+            token.sub = dbUser.id
+          } else {
+            token.role = 'STAFF'
+          }
+        } catch (e) {
+          token.role = 'STAFF'
+        }
+      }
+      if (!token.role) {
+        token.role = 'STAFF'
       }
       return token
     },
     async session({ session, token }: any) {
       if (token && session.user) {
         session.user.id = token.sub as string
-        session.user.role = token.role as string
+        session.user.role = (token.role as string) || 'STAFF'
       }
       return session
     },
